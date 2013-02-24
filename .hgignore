@@ -1,0 +1,3 @@
+syntax:regexp
+^PPC603gnu/
+GreyhoundLua-r[0-9]+\.(tar|tar\.bz2|tar\.gz|zip)
