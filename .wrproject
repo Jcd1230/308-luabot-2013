@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <wrxml>
     <properties platform="VxWorks" platform_name="vxworks-6.3" root="1" type="DownloadableKernelModuleProject"/>
     <attributes>
@@ -242,14 +242,14 @@
         </mapAttribute>
     </attributes>
     <buildtargets>
-        <buildtarget buildtool="Linker" name="GreyhoundLua" passed="false" targetname="GreyhoundLua">
+        <buildtarget buildtool="Linker" name="308LuaBot2013" passed="false" targetname="308LuaBot2013">
             <contents>
-                <buildtargetreference name="/GreyhoundLua/GreyhoundLua_partialImage"/>
+                <buildtargetreference name="/308-luabot-2013/308LuaBot2013_partialImage"/>
             </contents>
         </buildtarget>
-        <buildtarget buildtool="Partial Image Linker" name="GreyhoundLua_partialImage" passed="true" targetname="GreyhoundLua_partialImage">
+        <buildtarget buildtool="Partial Image Linker" name="308LuaBot2013_partialImage" passed="true" targetname="308LuaBot2013_partialImage">
             <contents>
-                <folder name="/GreyhoundLua" recursive="true"/>
+                <folder name="/308-luabot-2013" recursive="true"/>
             </contents>
         </buildtarget>
     </buildtargets>

@@ -31,7 +31,6 @@
 #include <WPILib/WPILib.h>
 %}
 
-typedef unsigned short u_short;
 typedef signed char INT8;
 typedef signed short INT16;
 typedef signed int INT32;
@@ -43,31 +42,6 @@ typedef unsigned int UINT32;
 typedef unsigned long long UINT64;
 
 %array_functions(UINT8, UINT8array);
-
-/*** CUSTOM USER CLASSES (unfortunately still in wpilib) ***/
-class DashboardClient {
-private:
-	char* dashIP;
-	char* luaDataCallback;
-	//Dont need the static's in lua (for now?)
-	//const static u_short dashPort = 1735;
-	//const static char hEOT = 4;
-
-	int n;
-	int dashSocket;
-	std::stringstream converter;
-	std::string buffer;
-	char tempbuff[BUFFER_SIZE];
-	bool angleRequested;
-	float dataAngle;
-	void BlockReceived(size_t);
-	DashboardClient(char* IP = "10.3.8.5", char* luaCallback = "dashDataReceived");
-	void SendDataLua(char header, char* data);
-	void PeriodicUpdate();
-	void ConnectToDash();
-	void DataReceived(char, std::string);
-	float GetAngle();
-};
 
 
 namespace std {
@@ -951,11 +925,11 @@ class HiTechnicColorSensor : public SensorBase
 {
 public:
     enum tColorMode {kActive = 0, kPassive = 1, kRaw = 3};
-    //typedef struct{
-    //    UINT16 red;
-    //    UINT16 blue;
-    //    UINT16 green;
-    //}RGB;
+    typedef struct{
+        UINT16 red;
+        UINT16 blue;
+        UINT16 green;
+    }RGB;
     explicit HiTechnicColorSensor(UINT8 moduleNumber);
     virtual ~HiTechnicColorSensor();
     UINT8 GetColor();
@@ -1151,6 +1125,8 @@ public:
     //virtual void InitTable(ITable* table);
 };
 
+%nodefaultctor Preferences;
+%nodefaultdtor Preferences;
 class Preferences : public ErrorBase
 {
 public:

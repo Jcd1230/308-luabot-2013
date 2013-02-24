@@ -25,20 +25,17 @@
 
 #include <stdio.h>
 #include "WPILib.h"
+#include "luainc.h"
 
-extern "C" {
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-}
+extern lua_State* L;
 
 #define FIRST_LUA_BOOT_FILE "lua/boot.lua"
 
 ////////////////// LIBRARIES ////////////////// 
 
-extern "C" int luaopen_wpilib(lua_State *L);
-extern "C" int luaopen_bit(lua_State *L);
-
+extern "C" int luaopen_wpilib(lua_State *Lua);
+extern "C" int luaopen_bit(lua_State *Lua);
+extern "C" int luaopen_dashclient(lua_State *Lua);
 struct libentry
 {
     char *name;
@@ -50,12 +47,11 @@ struct libentry libList[] =
 {
     {"bit", luaopen_bit, false},
     {"wpilib", luaopen_wpilib, true},
+    {"dashclient", luaopen_dashclient, true},
     {NULL, NULL, false}
 };
 
 ////////////////// LIBRARIES ////////////////// 
-// GLOBAL LUA STATE
-    lua_State *L;
 
 class LuaRobot : public RobotBase
 {
@@ -63,7 +59,6 @@ public:
     LuaRobot()
     {
         int i;
-        
         L = luaL_newstate();
         
         // Load builtin libraries
@@ -105,8 +100,6 @@ public:
         closeLua();
     }
     
-protected:
-
     void closeLua()
     {
         if (L != NULL)

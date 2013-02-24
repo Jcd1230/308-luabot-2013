@@ -1,4 +1,4 @@
-	#ifndef DASHBOARDCLIENT_H
+#ifndef DASHBOARDCLIENT_H
 #define DASHBOARDCLIENT_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
@@ -8,7 +8,12 @@
 #include <algorithm>
 #include <sstream>
 #include <string>
+
+#include "luainc.h"
+
 #define BUFFER_SIZE 256
+
+extern lua_State* L;
 
 /**
  *
@@ -21,7 +26,6 @@ private:
 	char* luaDataCallback;
 	const static u_short dashPort = 1735;
 	const static char hEOT = 4;
-	
 	int n;
 	int dashSocket;
 	std::stringstream converter;

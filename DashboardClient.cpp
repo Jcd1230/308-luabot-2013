@@ -65,14 +65,14 @@ void DashboardClient::PeriodicUpdate() {
 
 void DashboardClient::SendDataLua(char header, char* data) {
 	lua_getglobal(L, luaDataCallback);
-	lua_pushfstring("%c",header);
-	lua_pushfstring(data);
+	lua_pushfstring(L, "%c",header);
+	lua_pushfstring(L, data);
 	
 	//	pcall	LuaState, #params, #returns, *errcallback
 	if (lua_pcall(L, 2, 0, 0) != 0) 
 	{
 		printf("Received data, but lua callback failed\n");
-        lua_Lerror("DashboardClient::SendDataLua failed to call %s\n", luaDataCallback);
+        luaL_error(L, "DashboardClient::SendDataLua failed to call %s\n", luaDataCallback);
 	}
 }
 
@@ -80,7 +80,7 @@ void DashboardClient::SendDataLua(char header, char* data) {
 void DashboardClient::DataReceived(char header, std::string data) {
 	converter.clear();
 	printf("Got data in C\n");
-	SendDataLua(header, data.c_str());
+	SendDataLua(header, (char*)data.c_str());
 	/*switch (header) {
 	case 'a':
 		converter << data;
