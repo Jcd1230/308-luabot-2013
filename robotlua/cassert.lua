@@ -1,15 +1,20 @@
 local assert = assert
 
 NUMBER = "number"
-FUNCTION = "function"
 STRING = "string"
 BOOL = "boolean"
+FUNCTION = "function"
 TABLE = "table"
 THREAD = "thread"
+USERDATA = "userdata"
 
-function cassert(arg, vtype)
-	if (type(arg)==vtype) then return true end
+function cassert(arg, ...)
+	local args = {...}
+	local types = table.concat(args, "/")
+	for k,v in pairs(args) do	
+		if (type(arg)==v) then return true end
+	end
 	print(debug.traceback())
-	error("Expected "..vtype..", got "+type(arg)..".", 3)
+	error("Expected "..types..", got "+type(arg)..".", 3)
 	return false
 end

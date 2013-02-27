@@ -1,6 +1,7 @@
-module(..., package.seeall)
 
 local hooks = {}
+
+module(..., package.seeall)
 
 -- register
 -- Adds a new hook to the global table so it can be broadcast.
@@ -29,7 +30,11 @@ end
 -- returns false if the hookName is not registered
 function add(hookName, customHookName, callBackFunc)
 	if (hooks[hookName]) then
-		hooks[hookName].customHookName = callBackFunc
+		hooks[hookName][customHookName] = callBackFunc
+	else
+		register(hookName)
+		hooks[hookName][customHookName] = callBackFuc
+		print(hookName.." used without being registered!")
 	end
 end
 
@@ -38,8 +43,8 @@ end
 -- Unhooks the function with a specific customHookName
 -- Returns whether or not the hook existed and was removed.
 function remove(hookName, customHookName)
-	if (hooks[hookName] && hooks[hookName]) then
-		hooks[hookName].customHookName = nil
+	if (hooks[hookName] && hooks[hookName][customHookName]) then
+		hooks[hookName][customHookName] = nil
 		return true
 	end
 	return false
@@ -48,6 +53,10 @@ end
 -- broadcast
 -- Calls all functions hooked to hookName with {args}
 function broadcast(hookName, ...)
+	if (not hooks[hookName]) then
+		hook.register(hookName)
+		print(hookName.." broadcast without being registered!")
+	end
 	for k,v in pairs(hooks[hookName]) do
 		v(...)
 	end

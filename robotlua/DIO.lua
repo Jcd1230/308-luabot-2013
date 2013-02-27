@@ -2,7 +2,8 @@
 module(...,package.seeall)
 
 local hook = require('hook')
-
+local IN = false
+local OUT = true
 local DIOModule
 local function setupDIO()
 	DIOModule =  = wpilib.DigitalModule.GetInstance(1)

@@ -1,7 +1,10 @@
-hook = require('hook')
+
+require('hook')
 hook.register("DashAngle")
 
-dashClient = wpilib.DashboardClient("10.3.8.5","dashDataReceived")
+local dashClient = wpilib.DashboardClient("10.3.8.5","dashDataReceived")
+
+module(...,package.seeall)
 
 function dashDataReceived(header, data)
 	print("Received data: \n"..header.."\n"..data)

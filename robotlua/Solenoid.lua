@@ -22,3 +22,7 @@ end
 function get(n)
 	return SolValues[n]
 end
+
+function getSolenoid(n)
+	return Solenoids[n]
+end

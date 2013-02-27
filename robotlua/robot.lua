@@ -4,9 +4,9 @@
 
 module(...,package.seeall)
 
-dofile('client.lua')
-dofile('io.lua')
---dofile('SUBSYSTEM_HERE')
+require('client.lua')
+require('io.lua')
+--require('SUBSYSTEM_HERE')
 
 local hook = require('hook')
 

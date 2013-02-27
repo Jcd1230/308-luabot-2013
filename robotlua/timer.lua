@@ -1,6 +1,10 @@
+require('hook')
+
+module(..., package.seeall)
+
 
 local timers = {}
-function timer(name, delay, repeating, func)
+function new(name, delay, repeating, func)
 
 	timers[name] = {}
 	timers[name][1] = delay + os.clock()
@@ -22,15 +26,6 @@ function update()
 		end
 	end
 end
-
-function run()
-	while(true) do
-		update()
-	end
-end
-
-
-timer("test1", 1.25, true, function() print("test") timer("test1", 3, false, function() print("remade lolwat") end) end)
-timer("test2", 3, false, function() print("single shot") end)
-timer(5.3, 5, false, function() end)
-run()
+hook.add("TeleOpPeriodic", "__TimerUpdateT", update)
+hook.add("AutonomousPeriodic", "__TimerUpdateA", update)
+--hook.add("DisabledPeriodic", "__TimerUpdateD", update) --TODO: Should this be in or not?
