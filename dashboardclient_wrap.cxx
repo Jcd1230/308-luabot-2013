@@ -1911,7 +1911,7 @@ static swig_lua_class *swig_std_string_bases[] = {0};
 static const char *swig_std_string_base_names[] = {0};
 static swig_lua_class _wrap_class_std_string = { "string", &SWIGTYPE_p_std__string,_wrap_new_string, swig_delete_string, swig_std_string_methods, swig_std_string_attributes, swig_std_string_bases, swig_std_string_base_names };
 
-static int _wrap_new_DashboardClient__SWIG_0(lua_State* L) {
+static int _wrap_new_DashboardClient(lua_State* L) {
   int SWIG_arg = 0;
   char *arg1 = (char *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -1931,86 +1931,6 @@ static int _wrap_new_DashboardClient__SWIG_0(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_new_DashboardClient__SWIG_1(lua_State* L) {
-  int SWIG_arg = 0;
-  char *arg1 = (char *) 0 ;
-  DashboardClient *result = 0 ;
-  
-  SWIG_check_num_args("DashboardClient::DashboardClient",1,1)
-  if(!SWIG_lua_isnilstring(L,1)) SWIG_fail_arg("DashboardClient::DashboardClient",1,"char *");
-  arg1 = (char *)lua_tostring(L, 1);
-  result = (DashboardClient *)new DashboardClient(arg1);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_DashboardClient,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_DashboardClient__SWIG_2(lua_State* L) {
-  int SWIG_arg = 0;
-  DashboardClient *result = 0 ;
-  
-  SWIG_check_num_args("DashboardClient::DashboardClient",0,0)
-  result = (DashboardClient *)new DashboardClient();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_DashboardClient,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_DashboardClient(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 0) {
-    return _wrap_new_DashboardClient__SWIG_2(L);
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      _v = SWIG_lua_isnilstring(L,argv[0]);
-    }
-    if (_v) {
-      return _wrap_new_DashboardClient__SWIG_1(L);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      _v = SWIG_lua_isnilstring(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = SWIG_lua_isnilstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_new_DashboardClient__SWIG_0(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"Wrong arguments for overloaded function 'new_DashboardClient'\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DashboardClient::DashboardClient(char *,char *)\n"
-    "    DashboardClient::DashboardClient(char *)\n"
-    "    DashboardClient::DashboardClient()\n");
-  lua_error(L);return 0;
 }
 
 
